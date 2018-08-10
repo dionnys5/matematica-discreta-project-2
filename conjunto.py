@@ -70,8 +70,40 @@ class Conjunto:
                 
         return conjuntoResultado
 
-##    def conjuntoPartes(self):
-##        conjuntoResultado = [None]
-##        tamanhoConjunto = len(self.conjunto)
-##        for i in range(tamanhoConjunto):
-##        return conjuntoResultado
+    def conuntoPartes(self):
+        conjuntoResult = []
+        tamanhoConjunto = len(self.conjunto)
+        for x in range(tamanhoConjunto):
+            for i in itertools.combinations(self.conjunto, x):
+                conjuntoResult.append(i)
+        return conjuntoResult
+
+
+a = Conjunto()
+a.adicionar('a')
+a.adicionar('b')
+a.adicionar('c')
+a.adicionar('d')
+
+                
+print(a.conuntoPartes())
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
