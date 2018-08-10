@@ -1,3 +1,5 @@
+import itertools
+
 class Conjunto:
     
     def __init__(self):
@@ -20,79 +22,56 @@ class Conjunto:
         return True
 
     def uniao(self, conjunto):
-        z = conjunto
-        for i in self.conjunto:
-            if i not in conjunto:
-                elemento.append(i)
-        return z
+        conjuntoResultado = conjunto
+        for i in itertools.chain(self.conjunto, conjunto):
+            conjuntoResultado.append(i)
+        return conjuntoResultado
 
     def interseccao(self, conjunto):
-        z = []
+        conjuntoResultado = []
         for i in self.conjunto:
             if i in conjunto:
-                z.append(i)
-        return z
+                conjuntoResultado.append(i)
+        return conjuntoResultado
 
     def diferenca(self, conjunto):
-        z = []
+        conjuntoResultado = []
         for i in self.conjunto:
             if i not in conjunto:
-                z.append(i)
-        return z
+                conjuntoResultado.append(i)
+        return conjuntoResultado
 
     def complemento(self, conjunto):
-        z = []
+        conjuntoResultado = []
         for i in self.conjunto:
             if i not in conjunto:
-                z.append(i)
-        return z
-
-##    def partes(self):
-##        z = [None]
-##        for i in self.conjunto:
-##            z.append((i))
-##        
-##        
-##
+                conjuntoResultado.append(i)
+        return conjuntoResultado
 
     def cartesiano(self, conjunto):
-        z = []
-        for i in self.conjunto:
-            for j in conjunto:
-                z.append((i,j))
-        return z
+        conjuntoResultado = []
+        for elemento in itertools.product(self.conjunto, conjunto):
+            conjuntoResultado.append(elemento)
+        return conjuntoResultado
 
     def disjuntos(self, conjunto):
-        z = []
+        conjuntoResultado = []
         for i in self.conjunto:
             if i not in conjunto:
-                z.append(i)
+                conjuntoResultado.append(i)
             else:
-                z.append((i,'A'))
+                conjuntoResultado.append((i,'A'))
                 
         for i in conjunto:
             if i not in self.conjunto:
-                z.append(i)
+                conjuntoResultado.append(i)
             else:
-                z.append((i,'B'))
+                conjuntoResultado.append((i,'B'))
                 
-        return z
+        return conjuntoResultado
 
-a = Conjunto()
-a.adicionar(1)
-a.adicionar(2)
-a.adicionar(3)
-a.adicionar(4)
-print(a.conjunto)
-
-print('*****************')
-
-b = Conjunto()
-b.adicionar(1)
-b.adicionar(2)
-b.adicionar(5)
-b.adicionar(7)
-
-#Impressão para teste de metodos
-
-print(a.disjuntos(b.conjunto))
+##    def conjuntoPartes(self):
+##        conjuntoResultado = [None]
+##        tamanhoConjunto = len(self.conjunto)
+##        for i in range(tamanhoConjunto):
+##        return conjuntoResultado
